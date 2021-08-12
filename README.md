@@ -1,3 +1,17 @@
+## Winter '21 Release
+As per Winter '21 release (API 50.0), sending custom notifications became direclty supported through Apex.<br>
+Use the ```Messaging.CustomNotification``` class to create and send custom notifications, and once the custom notification is configured, call ```send()``` to send the notification. <br>
+<b>Example:</b>
+```javascript
+Messaging.CustomNotification notification = new Messaging.CustomNotification();
+notification.setTitle('Apex Custom Notification');
+notification.setBody('These notifications are coming from inside Apex code.');
+notification.setNotificationTypeId(typeId);
+notification.setTargetId(targetId);
+notification.send(recipientsIds);
+```
+For more details: https://sforce.co/2VMdoid
+
 # Salesforce Custom Notification
 Send a custom bell notification using Apex API for Mobile and Desktop.
 
@@ -32,7 +46,7 @@ Second, a Flow named ***SendCustomNotifications*** must be created, that can be 
         
 ## Apex
 Simply, ***SendCustomNotification*** Class represents an interface to push any type of custom notifications calling this statement:
-```
+```javascript
 new CustomNotification()    
     .type('MyCustomNotification')   
     .title('Notification Title')
@@ -41,7 +55,7 @@ new CustomNotification()
 ```
 Automated notificaions can be configured in triggers, *for instance:*
 
-```
+```javascript
 trigger AccountTrigger on Account (after insert) {
 new CustomNotification()    
     .type('MyCustomNotification')   
